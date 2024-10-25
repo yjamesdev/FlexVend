@@ -20,7 +20,7 @@ FlexVend es un **sistema de gestión de ventas versátil** diseñado para ayudar
 Para instalar y ejecutar FlexVend, asegúrate de tener instalados los siguientes requisitos:
 
 - **Node.js** (v14 o superior)
-- **MongoDB** (para almacenar datos)
+- **Mysql** (para almacenar datos)
 - **NPM** (o Yarn) para gestionar dependencias
 
 ---
