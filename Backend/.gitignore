@@ -1,0 +1,40 @@
+# Archivos de configuración de Visual Studio
+.vs/
+.vscode/
+.idea/
+
+# Archivos de configuración específicos de .NET
+.dnu/
+.project.lock.json
+.project.json
+# Ignorar binarios de compilación
+bin/
+obj/
+
+# Carpetas de dependencias locales (paquetes NuGet)
+# Si tienes configurada la carpeta de paquetes como "packages" o si usas la caché de NuGet
+# La siguiente regla ignorará las carpetas de paquetes en proyectos antiguos o tradicionales
+# NuGet 4.x y superior descarga los paquetes en una carpeta local (por ejemplo, ~/.nuget/packages)
+# pero no es necesario incluir esa carpeta en el repositorio.
+
+# Ignorar paquetes NuGet (usado en versiones antiguas o tradicionales de .NET)
+# (Si usas el paquete "packages" como carpeta predeterminada en proyectos antiguos de .NET Framework)
+packages/
+
+# Ignorar archivos y carpetas generados por NuGet
+# NuGet descargará los paquetes en la carpeta local de la solución, pero no necesitas incluir esos archivos
+# por ejemplo, los archivos de caché, los paquetes descargados, etc.
+*.nupkg
+
+# Ignorar caché de NuGet
+.nuget/
+
+# Ignorar archivos temporales
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Archivos de configuración de .NET Core
+project.lock.json
+project.fragment.lock.json
