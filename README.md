@@ -1,4 +1,4 @@
-# 🌟 FlexVend 🌟
+# FlexVend 
 
 FlexVend es un **sistema de gestión de ventas versátil** diseñado para ayudar a empresas de todos los tamaños a optimizar sus procesos de ventas. Con FlexVend, puedes gestionar productos, inventarios, clientes y ventas de manera eficaz. La interfaz es **intuitiva** y **personalizable**, lo que permite adaptar el sistema a las necesidades específicas de cada negocio.
 
