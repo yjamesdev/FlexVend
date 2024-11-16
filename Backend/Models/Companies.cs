@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Backend.Models
 {
-    public class Users
+
+    public class Companies
     {
         public enum Status
         {
@@ -14,29 +15,30 @@ namespace Backend.Models
             NoActive = 2
         }
 
-
         [Key]
         public int Id { get; set; }
-        [MaxLength(10)]
-        public string CodUser { get; set; } = string.Empty;
-        public int CompanyId { get; set; }
-        public int BranchId { get; set; }
         public byte[] Photo { get; set; } = new byte[0];
-
+        [MaxLength(10)]
+        public string CodCompanies { get; set; } = string.Empty;
         [MaxLength(255)]
-        public string Username { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
         [MaxLength(255)]
-        public string Password { get; set; } = string.Empty;
-        public int RoleId { get; set; }
+        public string Rnc { get; set; } = string.Empty;
         [MaxLength(255)]
-        public string Email { get; set; } = string.Empty;
-        [MaxLength(255)]
-        public string FullName { get; set; } = string.Empty;
+        public string Addres { get; set; } = string.Empty;
         [MaxLength(255)]
         public string PhoneNumber { get; set; } = string.Empty;
+        [MaxLength(255)]
+        public string Email { get; set; } = string.Empty;
+
         [EnumDataType(typeof(Status))]
         public Status status { get; set; } = Status.Active;
+        [MaxLength(255)]
+        public string Web { get; set; } = string.Empty;
+        [MaxLength(255)]
+        public string zipcode { get; set; } = string.Empty;
+        public int CountryId { get; set; }
         public DateTime DateCreation { get; set; }
-        public DateTime DateUpdate { get; set; }
+        public DateTime DataUpdate { get; set; }
     }
 }
