@@ -1,0 +1,9 @@
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+body {
+    background-color: #000000;
+    color: #342E3C;
+}
