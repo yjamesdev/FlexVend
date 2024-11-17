@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddControllers();
 builder.Services.AddDbContext<DB>(option =>
 option.UseNpgsql(builder.Configuration.GetConnectionString("Connection")));
 
@@ -24,25 +24,37 @@ builder.Services.AddAuthentication(Options =>
     Options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     Options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-   .AddJwtBearer(Options =>
-   {
-       Options.TokenValidationParameters = new TokenValidationParameters
-       {
-           ValidateIssuer = true,
-           ValidateAudience = true,
-           ValidateLifetime = true,
-           ValidateIssuerSigningKey = true,
-           ValidIssuer = builder.Configuration["Jwt:Issuer"],
-           IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
-       };
-   });
+.AddJwtBearer(Options =>
+{
+    Options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+    };
+});
 
-    builder.Services.AddAuthorization(Options => {
-        Options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
-    });
+builder.Services.AddAuthorization(Options =>
+{
+    Options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+});
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
@@ -53,7 +65,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
-app.UseAuthentication();
+app.UseCors("AllowReactApp");
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
 app.Run();
