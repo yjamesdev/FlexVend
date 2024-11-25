@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
@@ -18,7 +19,7 @@ namespace Backend.Models
         [Key]
         public int Id { get; set; }
         public byte[] Photo { get; set; } = new byte[0];
-        [MaxLength(10)]
+        [MaxLength(50)]
         public string CodCompanies { get; set; } = string.Empty;
         [MaxLength(255)]
         public string Name { get; set; } = string.Empty;
@@ -37,8 +38,10 @@ namespace Backend.Models
         public string Web { get; set; } = string.Empty;
         [MaxLength(255)]
         public string zipcode { get; set; } = string.Empty;
+        public int CityId { get; set; }
         public int CountryId { get; set; }
-        public DateTime DateCreation { get; set; }
-        public DateTime DataUpdate { get; set; }
+        public int StateId { get; set; }
+        public DateTime DateCreation { get; set; } = DateTime.UtcNow;
+        public DateTime DataUpdate { get; set; } = DateTime.UtcNow;
     }
 }

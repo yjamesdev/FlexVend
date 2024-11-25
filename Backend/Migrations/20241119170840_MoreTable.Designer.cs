@@ -3,6 +3,7 @@ using System;
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DB))]
-    partial class DBModelSnapshot : ModelSnapshot
+    [Migration("20241119170840_MoreTable")]
+    partial class MoreTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +37,6 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("CodBranches")
                         .IsRequired()
@@ -69,12 +69,6 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
-
-                    b.Property<int>("State")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("StateId")
-                        .HasColumnType("integer");
 
                     b.Property<int>("status")
                         .HasMaxLength(255)
@@ -136,9 +130,6 @@ namespace Backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("CodCompanies")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -177,9 +168,6 @@ namespace Backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<int>("StateId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Web")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -211,9 +199,6 @@ namespace Backend.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("CodCostumer")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -242,9 +227,6 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
-
-                    b.Property<int>("StateId")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -329,16 +311,10 @@ namespace Backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("CodSuppliers")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
-
-                    b.Property<int>("CountryId")
-                        .HasColumnType("integer");
 
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("timestamp with time zone");
@@ -360,9 +336,6 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
-
-                    b.Property<int>("StateId")
-                        .HasColumnType("integer");
 
                     b.Property<int>("status")
                         .HasColumnType("integer");

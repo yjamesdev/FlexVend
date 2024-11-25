@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-    public class Category
+    public class Terminals
     {
         public enum Status
         {
@@ -15,17 +15,20 @@ namespace Backend.Models
             NoActive = 2
         }
 
+
         [Key]
-        public int Id { get; set; }
-        public int CompanyId { get; set; }
-        [MaxLength(255)]
+        public int Id { get; set;}
+        public int CompanyId { get; set;}
+        public int BranchId { get; set;}
+        [MaxLength(50)]
+        public string CodTerminal { get; set; } = string.Empty;
+        [MaxLength(300)]
         public string Name { get; set; } = string.Empty;
-        [MaxLength(255)]
-        public string Description { get; set; } = string.Empty;
-        public int? Subcategory { get; set; }
+        [MaxLength(300)]
+        public string Address { get; set; } = string.Empty;
         [EnumDataType(typeof(Status))]
         public Status status { get; set; } = Status.Active;
         public DateTime DateCreation { get; set; } = DateTime.UtcNow;
-        public DateTime DataUpdate { get; set; } = DateTime.UtcNow;
+        public DateTime DateUpdate { get; set; } = DateTime.UtcNow;
     }
 }

@@ -1,4 +1,3 @@
-using System.Text;
 using Backend.Data;
 using Backend.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -8,6 +7,9 @@ using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

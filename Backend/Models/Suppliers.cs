@@ -7,9 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-    public class Branches
+    public class Suppliers
     {
-        public enum Status
+          public enum Status
         {
             Active = 1,
             NoActive = 2
@@ -17,25 +17,21 @@ namespace Backend.Models
 
         [Key]
         public int Id { get; set; }
-        [MaxLength(10)]
-        public string CodBranches { get; set; } = string.Empty;
-        public int CompanyId { get; set; }
-        public int CountryId { get; set; }
-        public int State { get; set; }
         [MaxLength(255)]
-        public string Name { get; set; } = string.Empty;
+        public string CodSuppliers { get; set; } = string.Empty;
+        [MaxLength(255)]
+        public string Name  { get; set; } = string.Empty;
         [MaxLength(255)]
         public string Address { get; set; } = string.Empty;
         [MaxLength(255)]
         public string PhoneNumber { get; set; } = string.Empty;
         [MaxLength(255)]
         public string Email { get; set; } = string.Empty;
-        [MaxLength(255)]
-        [EnumDataType(typeof(Status))]
         public Status status { get; set; } = Status.Active;
         public int CityId { get; set; }
+        public int CountryId { get; set; }
         public int StateId { get; set; }
         public DateTime DateCreation { get; set; } = DateTime.UtcNow;
-        public DateTime DataUpdate { get; set; } = DateTime.UtcNow;
+        public DateTime DateUpdate { get; set; } = DateTime.UtcNow;
     }
 }

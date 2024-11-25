@@ -96,7 +96,6 @@ namespace Backend.Controllers
             {
                 var User = new Users()
                 {
-                    Id = model.Id,
                     CompanyId = model.CompanyId,
                     BranchId = model.BranchId,
                     Photo = model.Photo,
@@ -181,7 +180,6 @@ namespace Backend.Controllers
                 user.DateUpdate = DateTime.UtcNow;
 
                 return Ok(new { message = $"User status updated to {user.status}" });
-
             }
             catch (Exception ex)
             {
@@ -191,6 +189,3 @@ namespace Backend.Controllers
         }
     }
     }
-
-
-

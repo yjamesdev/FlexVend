@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace Backend.Models
 {
@@ -15,15 +16,15 @@ namespace Backend.Models
             NoActive = 2
         }
 
-
         [Key]
+        [JsonIgnore]
         public int Id { get; set; }
-        [MaxLength(10)]
+        [MaxLength(50)]
         public string CodUser { get; set; } = string.Empty;
         public int CompanyId { get; set; }
-        public int BranchId { get; set; }
+        public int? BranchId { get; set; }
+        [JsonIgnore]
         public byte[] Photo { get; set; } = new byte[0];
-
         [MaxLength(255)]
         public string Username { get; set; } = string.Empty;
         [MaxLength(255)]
@@ -52,7 +53,7 @@ namespace Backend.Models
             }
         }
 
-        public DateTime DateCreation { get; set; }
-        public DateTime DateUpdate { get; set; }
+        public DateTime DateCreation { get; set; } = DateTime.UtcNow;
+        public DateTime DateUpdate { get; set; } = DateTime.UtcNow;
     }
 }
