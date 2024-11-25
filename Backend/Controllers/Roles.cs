@@ -25,10 +25,10 @@ namespace Backend.Controllers
         {
             try
             {
-                var Role =  await DbContext.Roles.ToListAsync();
+                var Role = await DbContext.Roles.ToListAsync();
                 var RoleList = new List<object>();
 
-                 foreach (var roles in Role)
+                foreach (var roles in Role)
                 {
 
                     RoleList.Add(new
@@ -60,7 +60,7 @@ namespace Backend.Controllers
         {
             try
             {
-                 var roles = await DbContext.Roles.FirstOrDefaultAsync(r => r.Name == name);
+                var roles = await DbContext.Roles.FirstOrDefaultAsync(r => r.Name == name);
 
                 if (roles == null)
                 {
@@ -76,25 +76,58 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUsers([FromBody] Role model)
+        public async Task<IActionResult> CreateRole([FromBody] Role model)
         {
             try
             {
-                var Role = new Users()
+                var role = new Role()
                 {
-
+                    BranchId = model.BranchId,
+                    CompanyId = model.CompanyId,
+                    Name = model.Name,
+                    Description = model.Description,
                 };
 
-                DbContext.Users.Add(User);
+                DbContext.Roles.Add(role);
                 await DbContext.SaveChangesAsync();
 
-                return Ok(CreatedAtAction(nameof(GetAllUsers), new { Id = User.Id }, User));
+                return Ok(CreatedAtAction(nameof(GetRole), new { Id = role }, role));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "Users were not created correctly", error = ex.Message });
+                return StatusCode(500, new { message = "Roles were not created correctly", error = ex.Message });
             }
         }
 
-}
+        [HttpPut]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> UpdateRoles(Guid id, [FromBody] Role model)
+        {
+            try
+            {
+                var role = DbContext.Roles.Find(id);
+
+                if (role == null)
+                {
+                    return NotFound(new { message = "This Role was not found" });
+                }
+
+                role.CompanyId = model.CompanyId;
+                role.BranchId = model.BranchId;
+                role.Name = model.Name;
+                role.Description = model.Description;
+
+                DbContext.Roles.Update(role);
+                await DbContext.SaveChangesAsync();
+
+                return Ok(new { message = "Rolesupdated successfully", role });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while updating the roles", error = ex.Message });
+            }
+        }
+
+    
+    }
 }
