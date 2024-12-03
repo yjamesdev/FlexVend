@@ -69,12 +69,12 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> GetUsers(Guid id)
+        [Route("{name}")]
+        public async Task<IActionResult> GetUsers(string name)
         {
             try
             {
-                var user = await DbContext.Users.FindAsync(id);
+                var user = await DbContext.Users.FirstOrDefaultAsync(r => r.Username == name);
 
                 if (user == null)
                 {
@@ -122,12 +122,12 @@ namespace Backend.Controllers
         }
 
         [HttpPut]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> UpdateUsers(Guid id, [FromBody] Users model)
+        [Route("{name}")]
+        public async Task<IActionResult> UpdateUsers(string name, [FromBody] Users model)
         {
             try
             {
-                var user = DbContext.Users.Find(id);
+                var user = await DbContext.Users.FirstOrDefaultAsync(r => r.Username == name);
 
                 if (user == null)
                 {
@@ -158,12 +158,12 @@ namespace Backend.Controllers
         }
 
         [HttpPatch]
-        [Route("{id:guid}/status")]
-        public async Task<IActionResult> UpdateUserStatus(Guid id, [FromBody] string newStatus)
+        [Route("{name}/status")]
+        public async Task<IActionResult> UpdateUserStatus(string name, [FromBody] string newStatus)
         {
             try
             {
-                var user = await DbContext.Users.FindAsync(id);
+                var user = await DbContext.Users.FirstOrDefaultAsync(r => r.Username == name);
 
                 if (user == null)
                 {

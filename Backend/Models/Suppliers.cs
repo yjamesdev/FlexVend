@@ -9,7 +9,7 @@ namespace Backend.Models
 {
     public class Suppliers
     {
-          public enum Status
+          public enum SuppliersStatus
         {
             Active = 1,
             NoActive = 2
@@ -27,7 +27,7 @@ namespace Backend.Models
         public string PhoneNumber { get; set; } = string.Empty;
         [MaxLength(255)]
         public string Email { get; set; } = string.Empty;
-        public Status status { get; set; } = Status.Active;
+        public SuppliersStatus status { get; set; } = SuppliersStatus.Active;
         public int CityId { get; set; }
         public int CountryId { get; set; }
         public int StateId { get; set; }

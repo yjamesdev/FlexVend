@@ -100,12 +100,12 @@ namespace Backend.Controllers
         }
 
         [HttpPut]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> UpdateRoles(Guid id, [FromBody] Role model)
+        [Route("{name}")]
+        public async Task<IActionResult> UpdateRoles(string name, [FromBody] Role model)
         {
             try
             {
-                var role = DbContext.Roles.Find(id);
+                var role = await DbContext.Roles.FirstOrDefaultAsync(r => r.Name == name);
 
                 if (role == null)
                 {
@@ -128,6 +128,6 @@ namespace Backend.Controllers
             }
         }
 
-    
+
     }
 }

@@ -27,7 +27,6 @@ namespace Backend.Data
         public DbSet<Suppliers> Suppliers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Terminals> Terminals { get; set; }
-
     }
 
 }

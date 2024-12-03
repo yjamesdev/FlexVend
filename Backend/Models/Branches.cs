@@ -9,7 +9,7 @@ namespace Backend.Models
 {
     public class Branches
     {
-        public enum Status
+        public enum BranchStatus
         {
             Active = 1,
             NoActive = 2
@@ -21,7 +21,7 @@ namespace Backend.Models
         public string CodBranches { get; set; } = string.Empty;
         public int CompanyId { get; set; }
         public int CountryId { get; set; }
-        public int State { get; set; }
+
         [MaxLength(255)]
         public string Name { get; set; } = string.Empty;
         [MaxLength(255)]
@@ -31,11 +31,11 @@ namespace Backend.Models
         [MaxLength(255)]
         public string Email { get; set; } = string.Empty;
         [MaxLength(255)]
-        [EnumDataType(typeof(Status))]
-        public Status status { get; set; } = Status.Active;
+        [EnumDataType(typeof(BranchStatus))]
+        public BranchStatus status { get; set; } = BranchStatus.Active;
         public int CityId { get; set; }
         public int StateId { get; set; }
         public DateTime DateCreation { get; set; } = DateTime.UtcNow;
-        public DateTime DataUpdate { get; set; } = DateTime.UtcNow;
+        public DateTime DateUpdate { get; set; } = DateTime.UtcNow;
     }
 }
