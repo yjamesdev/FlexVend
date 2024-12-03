@@ -91,7 +91,6 @@ namespace Backend.Controllers
         {
             try
             {
-                 model.Id = 0;
                 var company = new Companies()
                 {
                        Photo = model.Photo,
@@ -124,26 +123,38 @@ namespace Backend.Controllers
 
         [HttpPut]
         [Route("{name}")]
-        public async Task<IActionResult> UpdateCompany(string name, [FromBody] Role model)
+        public async Task<IActionResult> UpdateCompany(string name, [FromBody] Companies model)
         {
             try
             {
-                var role = await DbContext.Roles.FirstOrDefaultAsync(r => r.Name == name);
+                var company  = await DbContext.Companies.FirstOrDefaultAsync(r => r.Name == name);
 
-                if (role == null)
+                if (company  == null)
                 {
-                    return NotFound(new { message = "This Role was not found" });
+                    return NotFound(new { message = "This Companies was not found" });
                 }
 
-                role.CompanyId = model.CompanyId;
-                role.BranchId = model.BranchId;
-                role.Name = model.Name;
-                role.Description = model.Description;
+                  company.Photo = model.Photo;
+                  company.Name = model.Name;
+                  company.Rnc = model.Rnc;
+                  company.Addres = model.Addres;
+                  company.PhoneNumber = model.PhoneNumber;
+                  company.Email = model.Email;
+                  company.status = model.status;
+                  company.Web = model.Web;
+                  company.zipcode = model.zipcode;
+                  company.CityId = model.CityId;
+                  company.CountryId = model.CountryId;
+                  company.StateId = model.StateId;
+                  company.CountryId = model.CountryId;
+                  company.StateId = model.StateId;
+                  company.DateUpdate = DateTime.UtcNow;
+                  company.DateCreation = DateTime.UtcNow;
 
-                DbContext.Roles.Update(role);
+                DbContext.Companies.Update(company);
                 await DbContext.SaveChangesAsync();
 
-                return Ok(new { message = "Roles updated successfully", role });
+                return Ok(new { message = "Roles updated successfully", company  });
             }
             catch (Exception ex)
             {
