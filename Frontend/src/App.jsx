@@ -5,8 +5,8 @@ import FloatingSharpe from '../components/FloatingSharpe'
 import { Children } from 'react'
 import { useAuthStore } from './Protected/ProtectedRoute'
 import Dashboard from './Dashboard/Dashboard'
-import Sidebar from './Dashboard/Sidebar/Sidebar'
-import Home from './Home/Home'
+import Sidebar from './Dashboard/Sidebar/Sidebar.jsx'
+import Home from './Home/Home.jsx'
 
 function App() {
  const ProtectedRoute = ({Children}) => {
@@ -43,10 +43,10 @@ function App() {
           delay={5}
         />
 
+<Sidebar />
         <Routes>
           <Route path="/Auth" element={<Auth />} />
           <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="/Sidebar" element={<Sidebar />} />
           <Route path="*" element={<Navigate to="/Auth" />} />
           <Route path="/" element={<Home />} />
         </Routes>

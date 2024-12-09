@@ -11,10 +11,10 @@ namespace Backend.Models
     {
      [Required]
      [MaxLength(50)]
-     public string Username { get; set; }
+     public string Username { get; set; } = string.Empty;
 
      [Required]
      [MaxLength(255)]
-     public string Password { get; set; }
+     public string Password { get; set; } = string.Empty;
     }
 }
