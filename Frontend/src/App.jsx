@@ -1,24 +1,23 @@
-import './App.css'
-import Auth from './Auth/Auth'
-import { Navigate, Route, Routes } from 'react-router-dom'
-import FloatingSharpe from '../components/FloatingSharpe'
-import { Children } from 'react'
-import { useAuthStore } from './Protected/ProtectedRoute'
-import Dashboard from './Dashboard/Dashboard'
-import Sidebar from './Dashboard/Sidebar/Sidebar.jsx'
-import Home from './Home/Home.jsx'
+import "./App.css";
+import Auth from "./Auth/Auth";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import FloatingSharpe from "../components/FloatingSharpe";
+import { useAuthStore } from "./Protected/ProtectedRoute";
+import Dashboard from "./Dashboard/Dashboard";
+import Sidebar from "./Dashboard/Sidebar/Sidebar.jsx";
+import Home from "./Home/Home.jsx";
 
 function App() {
- const ProtectedRoute = ({Children}) => {
+  const location = useLocation();
+  const ProtectedRoute = ({ Children }) => {
     const { isAuthenticated, user } = useAuthStore();
 
     if (!isAuthenticated) {
-        return <Navigate to="/Auth" replace />
+      return <Navigate to="/Auth" replace />;
     }
 
-    return Children
- }
-
+    return Children;
+  };
 
   return (
     <>
@@ -42,17 +41,19 @@ function App() {
           left="80%"
           delay={5}
         />
+        {location.pathname !== "/Auth" && <Sidebar />}
 
-<Sidebar />
+        <div className={`flex-1 ${location.pathname === '/Auth' ? 'flex items-center justify-center' : ''}`}>
         <Routes>
           <Route path="/Auth" element={<Auth />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="*" element={<Navigate to="/Auth" />} />
           <Route path="/" element={<Home />} />
         </Routes>
+        </div>
       </div>
-      </>
-    );
+    </>
+  );
 }
 
-export default App
+export default App;
