@@ -6,6 +6,12 @@ import { useAuthStore } from "./Protected/ProtectedRoute";
 import Dashboard from "./Dashboard/Dashboard";
 import Sidebar from "./Dashboard/Sidebar/Sidebar.jsx";
 import Home from "./Home/Home.jsx";
+import Companies from "./Companies/Companies.jsx";
+import Users from "./Users/Users.jsx";
+import Branch from "./Branch/Branch.jsx";
+import Roles from "./Roles/Roles.jsx";
+import Setting from "./Settings/Setting.jsx";
+import Analytics from "./Analytics/Analytics.jsx";
 
 function App() {
   const location = useLocation();
@@ -46,9 +52,14 @@ function App() {
         <div className={`flex-1 ${location.pathname === '/Auth' ? 'flex items-center justify-center' : ''}`}>
         <Routes>
           <Route path="/Auth" element={<Auth />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="*" element={<Navigate to="/Auth" />} />
           <Route path="/" element={<Home />} />
+          <Route path="/Companies" element={<Companies />} />
+          <Route path="/Users" element={<Users />} />
+          <Route path="/Branch" element={<Branch />} />
+          <Route path="/Roles" element={<Roles />} />
+          <Route path="/Analytics" element={<Analytics />} />
+          <Route path="/Settings" element={<Setting />} />
         </Routes>
         </div>
       </div>
